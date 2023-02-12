@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Box,
@@ -12,49 +12,27 @@ import {
 import { Directions, SearchRounded } from "@mui/icons-material";
 import baseApi from "../../../Services/baseApi";
 import { SEARCHCOUNRTYAPI } from "../../../../Utils/Constants/api_constants";
+// import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  // const navigate = useNavigate();
   const [searchCounty, setsearchCounty] = useState("");
-  const [searchCountyData, setsearchCountyData] = useState([]);
 
   const onInputSearch = (e) => {
     setsearchCounty(e.target.value);
   };
+  const [CountyData, setCountyData] = useState();
 
-  const getContryData = async (value) => {
+  const getContryData = async (name) => {
     try {
-      const response = await baseApi.get(SEARCHCOUNRTYAPI(value));
-      let filterResponse = response?.data?.map((output) => {
-        return {
-          Name: output?.name?.official,
-          CommonName: output?.name?.common,
-          Region: output?.region,
-          Subregion: output?.subregion,
-          population: output?.population,
-          area: output?.area,
-          languages: output?.languages,
-          continents: output?.continents,
-          status: output?.status,
-          timezones: output?.timezones,
-          latlng: output?.latlng,
-          flags_imgUrl: output?.flags?.png,
-          flags_altUrl: output?.flags?.alt,
-          postalCode: output?.postalCode,
-          maps: output?.maps,
-          currencies: output?.currencies,
-          fifa: output?.fifa,
-          nativeName: output?.nativeName,
-        };
-      });
-      setsearchCountyData(filterResponse);
+      const response = await baseApi.get(SEARCHCOUNRTYAPI(name));
+      let data = response?.data[0];
+      setCountyData(data);
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  useEffect(() => {
-    getContryData();
-  }, []);
   return (
     <>
       <Box
@@ -97,6 +75,7 @@ export default function Header() {
                 aria-label="search"
                 onClick={() => {
                   getContryData(searchCounty);
+                  // navigate("/SearchPage");
                 }}
               >
                 <SearchRounded />

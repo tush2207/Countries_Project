@@ -27,7 +27,7 @@ export const routes = [
     component: Area,
   },
   {
-    path: "/Search",
+    path: "/SearchPage",
     component: SearchPage,
   },
 ];

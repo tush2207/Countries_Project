@@ -39,7 +39,7 @@ const CountryDetails = () => {
           <Card variant="outlined">
             <CardContent>
               <Typography variant="h6">
-                Official: {CountyData?.name?.official}
+                Official: {CountyData?.name?.common}
               </Typography>
               <Typography variant="h6">
                 Common: {CountyData?.name?.common}

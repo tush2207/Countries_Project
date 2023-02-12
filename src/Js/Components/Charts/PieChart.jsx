@@ -5,20 +5,19 @@ import CountrtiesDetails from "../Hooks/Context/Context";
 const PieChart = () => {
   const data = useContext(CountrtiesDetails);
   const [CountryName, setCountryName] = useState([]);
-  const [CountryPopulation, setCountryPopulation] = useState([]);
+  const [Area, setArea] = useState([]);
   const filterNamePopulation = () => {
     let filterName = data?.map((output) => output.Name);
     setCountryName(filterName);
-    let filterPopulation = data?.map((output) => output.area);
-    setCountryPopulation(filterPopulation);
+    let filterArea = data?.map((output) => output.area);
+    setArea(filterArea);
   };
 
   useEffect(() => {
     filterNamePopulation();
-    // eslint-disable-next-line 
   }, [data]);
 
-  const series = CountryPopulation;
+  const series = Area;
 
   const options = {
     chart: {
