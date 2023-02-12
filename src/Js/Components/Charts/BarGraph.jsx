@@ -15,6 +15,7 @@ const BarGraph = () => {
   };
   useEffect(() => {
     filterNamePopulation();
+    // eslint-disable-next-line
   }, [data]);
 
   const series = [
@@ -39,7 +40,7 @@ const BarGraph = () => {
       categories: CountryName,
     },
     title: {
-      text: "World Population By Country",
+      text: "World population by countries",
       align: "center",
       floating: true,
     },

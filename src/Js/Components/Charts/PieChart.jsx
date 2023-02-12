@@ -15,6 +15,7 @@ const PieChart = () => {
 
   useEffect(() => {
     filterNamePopulation();
+    // eslint-disable-next-line 
   }, [data]);
 
   const series = CountryPopulation;
@@ -39,7 +40,7 @@ const PieChart = () => {
     labels: CountryName,
 
     title: {
-      text: "World Area wies Country",
+      text: "World population by Area size",
       align: "center",
       floating: true,
     },

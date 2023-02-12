@@ -10,6 +10,7 @@ import { Avatar, TablePagination } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import CountrtiesDetails from "../Hooks/Context/Context";
+import Title from "../Common/Title/Title";
 
 const columns = [
   {
@@ -42,13 +43,10 @@ const columns = [
 ];
 export default function DataTable() {
   const data = useContext(CountrtiesDetails);
-
-  const [selectedData, setselectedData] = useState([]);
   const row = data;
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -59,12 +57,12 @@ export default function DataTable() {
   };
 
   const SelectCOuntry = (value) => {
-    setselectedData(value);
     navigate(`/CountryDetails/${value}`);
   };
 
   return (
     <Box>
+      <Title Title={"Countries Data Table"} />
       <TableContainer component={Paper}>
         <Table aria-label="caption table">
           <TableHead>
