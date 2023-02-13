@@ -15,6 +15,7 @@ const PieChart = () => {
 
   useEffect(() => {
     filterNamePopulation();
+    // eslint-disable-next-line
   }, [data]);
 
   const series = Area;

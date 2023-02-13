@@ -1,15 +1,7 @@
-import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
 import { Card, Typography } from "@mui/material";
 import { CropSquare, Group, Public } from "@mui/icons-material";
 
-WidgetSummary.propTypes = {
-  color: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  total: PropTypes.number.isRequired,
-};
-
-export default function WidgetSummary({ title, total, color = "primary" }) {
+export default function WidgetSummary({ title, total, onClick }) {
   return (
     <Card
       sx={{
@@ -18,7 +10,9 @@ export default function WidgetSummary({ title, total, color = "primary" }) {
         textAlign: "center",
         borderRadius: "10px",
         border: "3px solid #dfdfdf",
+        cursor: "pointer",
       }}
+      onClick={onClick}
     >
       <div
         sx={{
@@ -26,11 +20,11 @@ export default function WidgetSummary({ title, total, color = "primary" }) {
         }}
       >
         {title === "Countries" ? (
-          <Public style={{ fontSize: "40px" }} />
+          <Public style={{ fontSize: "40px", color: "gray" }} />
         ) : title === "Population" ? (
-          <Group style={{ fontSize: "40px" }} />
+          <Group style={{ fontSize: "40px", color: "gray" }} />
         ) : (
-          <CropSquare style={{ fontSize: "40px" }} />
+          <CropSquare style={{ fontSize: "40px", color: "gray" }} />
         )}
       </div>
 

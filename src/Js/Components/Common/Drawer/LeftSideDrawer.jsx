@@ -50,7 +50,6 @@ const LeftSideDrawer = () => {
         flexShrink: 0,
         [`& .MuiDrawer-paper`]: {
           width: drawerWidth,
-          // boxSizing: "border-box",
         },
       }}
     >
@@ -60,7 +59,6 @@ const LeftSideDrawer = () => {
           <List>
             {Componentroutes.map((output, index) => (
               <Link href={output.path} underline="none" key={index}>
-                {/* <StyledNavItem> */}
                 <ListItemButton
                   style={{
                     height: 48,
@@ -100,7 +98,6 @@ const LeftSideDrawer = () => {
                     }}
                   />
                 </ListItemButton>
-                {/* </StyledNavItem> */}
               </Link>
             ))}
           </List>

@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Avatar, TablePagination } from "@mui/material";
+import { Avatar, TableFooter, TablePagination } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import CountrtiesDetails from "../Hooks/Context/Context";
@@ -45,9 +45,9 @@ export default function DataTable() {
   const data = useContext(CountrtiesDetails);
   const row = data;
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     setPage(newPage);
   };
 
@@ -66,26 +66,28 @@ export default function DataTable() {
       <TableContainer component={Paper}>
         <Table aria-label="caption table">
           <TableHead>
-            {columns.map((column) => (
-              <TableCell
-                key={column.id}
-                align={column.align}
-                style={{
-                  minWidth: column.minWidth,
-                  fontSize: "20px",
-                  background: "#dfdfdf",
-                }}
-              >
-                {column.label}
-              </TableCell>
-            ))}
+            <TableRow>
+              {columns.map((column, index) => (
+                <TableCell
+                  key={index}
+                  align={column.align}
+                  style={{
+                    minWidth: column.minWidth,
+                    fontSize: "20px",
+                    background: "#dfdfdf",
+                  }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
           </TableHead>
           <TableBody>
             {row
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               ?.map((row, index) => {
                 return (
-                  <TableRow hover key={index}>
+                  <TableRow key={index} hover>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -124,14 +126,18 @@ export default function DataTable() {
                 );
               })}
           </TableBody>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 50, 75, 100]}
-            count={row?.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />{" "}
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 50, 75, 100]}
+                count={row?.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </TableRow>
+          </TableFooter>
         </Table>
       </TableContainer>
     </Box>

@@ -34,7 +34,7 @@ const CountryDetails = () => {
   };
   useEffect(() => {
     getContryData();
-  }, []);
+  }, [name]);
   return (
     <Box mb={3}>
       <div
@@ -86,9 +86,11 @@ const CountryDetails = () => {
               ) : (
                 ""
               )}
-              {CountyData?.altSpellings.map((alt) => {
+              {CountyData?.altSpellings.map((alt, index) => {
                 return (
-                  <Typography variant="h6">AltSpellings: {alt}</Typography>
+                  <Typography variant="h6" key={index}>
+                    AltSpellings: {alt}
+                  </Typography>
                 );
               })}
             </CardContent>
@@ -162,12 +164,6 @@ const CountryDetails = () => {
               ) : (
                 ""
               )}
-              {/* <Typography variant="h6">
-                Border:
-                {CountyData?.borders.map((border) => {
-                  return border;
-                })}
-              </Typography> */}
               {CountyData?.area ? (
                 <Typography variant="h6">Area: {CountyData?.area}</Typography>
               ) : (
@@ -190,7 +186,11 @@ const CountryDetails = () => {
               )}
               <div style={{ display: "flex" }}>
                 <MapOutlined style={{ fontSize: "25px", marginRight: "5px" }} />
-                <a href={CountyData?.maps?.googleMaps} target="_blank" rel="noreferrer">
+                <a
+                  href={CountyData?.maps?.googleMaps}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {CountyData?.maps?.googleMaps}
                 </a>
               </div>
@@ -198,7 +198,11 @@ const CountryDetails = () => {
               <div style={{ display: "flex" }}>
                 <Place style={{ fontSize: "25px", marginRight: "5px" }} />
                 <Typography>
-                  <a href={CountyData?.maps?.openStreetMaps} target="_blank" rel="noreferrer">
+                  <a
+                    href={CountyData?.maps?.openStreetMaps}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {CountyData?.maps?.openStreetMaps}
                   </a>
                 </Typography>
