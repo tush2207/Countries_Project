@@ -3,11 +3,10 @@ import { Card, CardContent, Grid, Stack, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { COUNTRYDETAILS } from "../../Utils/Constants/api_constants";
+import { COUNTRYDETAIL } from "../../Utils/Constants/api_constants";
 
 const SearchPage = ({ data }) => {
   const navigate = useNavigate();
-  console.log("data", data);
   useEffect(() => {}, [data]);
 
   return (
@@ -20,7 +19,7 @@ const SearchPage = ({ data }) => {
               sx={{ width: "50%", cursor: "pointer", marginTop: "85px" }}
               onClick={() =>
                 data?.name?.common !== "" || data?.name?.common !== undefined
-                  ? navigate(COUNTRYDETAILS)
+                  ? navigate(COUNTRYDETAIL + data?.name?.common)
                   : ""
               }
             >
