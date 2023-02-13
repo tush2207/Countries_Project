@@ -87,7 +87,15 @@ export default function DataTable() {
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               ?.map((row, index) => {
                 return (
-                  <TableRow key={index} hover>
+                  <TableRow
+                    key={index}
+                    sx={{
+                      ":hover": {
+                        backgroundColor: "#F4EFEF",
+                        boxShadow: 5,
+                      },
+                    }}
+                  >
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (

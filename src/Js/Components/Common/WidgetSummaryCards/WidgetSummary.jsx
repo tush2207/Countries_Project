@@ -6,11 +6,15 @@ export default function WidgetSummary({ title, total, onClick }) {
     <Card
       sx={{
         py: 5,
-        boxShadow: 0,
         textAlign: "center",
         borderRadius: "10px",
         border: "3px solid #dfdfdf",
         cursor: "pointer",
+        ":hover": {
+          backgroundColor: "#dfdfdf",
+          boxShadow: 5,
+          color: "black",
+        },
       }}
       onClick={onClick}
     >
@@ -34,8 +38,12 @@ export default function WidgetSummary({ title, total, onClick }) {
       </Typography>
 
       <Typography
-        variant="h6"
-        sx={{ opacity: 0.72, fontFamily: "serif", fontWeight: "500" }}
+        sx={{
+          opacity: 0.72,
+          fontWeight: "500",
+          fontFamily: "serif",
+          fontSize:"25px"
+        }}
       >
         {title}
       </Typography>
