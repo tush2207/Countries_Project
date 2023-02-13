@@ -1,3 +1,10 @@
+import {
+  AREA,
+  COUNTRYDETAILS,
+  DATATABLE,
+  POPULATION,
+  SEARCHPAGE,
+} from "../../Utils/Constants/api_constants";
 import DataTable from "../Components/DataTable/DataTable";
 import Area from "../Pages/Area";
 import CountryDetails from "../Pages/CountryDetails";
@@ -11,23 +18,23 @@ export const routes = [
     component: Dashbaord,
   },
   {
-    path: "/DataTable",
+    path: DATATABLE,
     component: DataTable,
   },
   {
-    path: "/CountryDetails/:name",
+    path: COUNTRYDETAILS,
     component: CountryDetails,
   },
   {
-    path: "/Population",
+    path: POPULATION,
     component: Population,
   },
   {
-    path: "/Area",
+    path: AREA,
     component: Area,
   },
   {
-    path: "/SearchPage",
+    path: SEARCHPAGE,
     component: SearchPage,
   },
 ];

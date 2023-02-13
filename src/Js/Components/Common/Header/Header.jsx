@@ -11,7 +11,10 @@ import {
 } from "@mui/material";
 import { Directions, SearchRounded } from "@mui/icons-material";
 import baseApi from "../../../Services/baseApi";
-import { SEARCHCOUNRTYAPI } from "../../../../Utils/Constants/api_constants";
+import {
+  SEARCHCOUNRTYAPI,
+  SEARCHPAGE,
+} from "../../../../Utils/Constants/api_constants";
 // import { useNavigate } from "react-router-dom";
 
 export default function Header() {
@@ -75,7 +78,7 @@ export default function Header() {
                 aria-label="search"
                 onClick={() => {
                   getContryData(searchCounty);
-                  // navigate("/SearchPage");
+                  // navigate(SEARCHPAGE);
                 }}
               >
                 <SearchRounded />

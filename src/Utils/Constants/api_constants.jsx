@@ -1,4 +1,8 @@
 export const mainURL = "https://restcountries.com/v3.1/";
 export const ALLCOUNTRIESAPI = "all";
 export const SEARCHCOUNRTYAPI = (value) => `/name/${value}`;
-export const SEARCHPAGE = (value) => `/Search`;
+export const DATATABLE = "/DataTable";
+export const COUNTRYDETAILS = "/CountryDetails/:name";
+export const POPULATION = "/Population";
+export const AREA = "/Area";
+export const SEARCHPAGE = "/SearchPage";

@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import React, { useContext } from "react";
 import Title from "../Components/Common/Title/Title";
+import WidgetSummary from "../Components/Common/WidgetSummaryCards/WidgetSummary";
 import CountrtiesDetails from "../Components/Hooks/Context/Context";
 
 const Dashbaord = () => {
@@ -19,11 +20,18 @@ const Dashbaord = () => {
 
   return (
     <div>
-      <Title Title={"Dashboard"} />
-      <Typography variant="h6">Countries :{TotalCounties}</Typography>
-      <Typography variant="h6">Area :{TotalArea}</Typography>
-      <Typography variant="h6">Population:{TotalPopulation}</Typography>
-      {}
+      <Title Title={"Hi, Mx. X"} />
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6} md={4}>
+          <WidgetSummary title="Countries" total={TotalCounties} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <WidgetSummary title="Population" total={TotalPopulation} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <WidgetSummary title="Area" total={Math.floor(TotalArea)} />
+        </Grid>
+      </Grid>
     </div>
   );
 };

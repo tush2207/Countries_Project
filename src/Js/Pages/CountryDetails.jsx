@@ -1,11 +1,16 @@
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { SEARCHCOUNRTYAPI } from "../../Utils/Constants/api_constants";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  DATATABLE,
+  SEARCHCOUNRTYAPI,
+} from "../../Utils/Constants/api_constants";
 import baseApi from "../Services/baseApi";
 import Title from ".././Components/Common/Title/Title";
+import { KeyboardBackspaceSharp } from "@mui/icons-material";
 
 const CountryDetails = () => {
+  const navigate = useNavigate();
   const { name } = useParams();
   const [CountyData, setCountyData] = useState();
   const getContryData = async () => {
@@ -23,6 +28,20 @@ const CountryDetails = () => {
   });
   return (
     <Box mb={3}>
+      <div
+        style={{ display: "flex", cursor: "pointer" }}
+        onClick={() => navigate(DATATABLE)}
+      >
+        <KeyboardBackspaceSharp
+          style={{
+            color: "grey",
+            margin: "2px 5px 0px 0px",
+          }}
+        />
+        <Typography style={{ fontSize: "20px", color: "grey" }}>
+          Go back
+        </Typography>
+      </div>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6} lg={4}>
           <Typography variant="h4" sx={{ mb: 2 }}>

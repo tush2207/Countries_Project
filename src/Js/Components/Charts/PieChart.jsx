@@ -51,7 +51,7 @@ const PieChart = () => {
         options={options}
         series={series}
         type="pie"
-        heigh={1500}
+        heigh={1800}
       />
     </div>
   );
