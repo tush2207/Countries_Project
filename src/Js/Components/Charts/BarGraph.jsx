@@ -10,11 +10,7 @@ const BarGraph = () => {
     let filterName = data?.map((output) => output.CommonName);
     setCountryName(filterName);
     let filterPopulation = data?.map((output) => output.population);
-    // filterPopulation.sort(function(a, b){return b-a});
     setCountryPopulation(filterPopulation);
-
-    const sum = filterPopulation.reduce((partialSum, a) => partialSum + a, 0);
-    console.log("sum", sum);
   };
   useEffect(() => {
     filterNamePopulation();

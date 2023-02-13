@@ -5,58 +5,48 @@ import {
   ListItemButton,
   ListItemIcon,
   Box,
-  styled,
   ListItemText,
   Link,
 } from "@mui/material";
 import React from "react";
-import { Adjust, Dashboard, Map, People, TableRows } from "@mui/icons-material";
-
+import {
+  Adjust,
+  DashboardCustomize,
+  Map,
+  People,
+  TableRows,
+} from "@mui/icons-material";
+import {
+  AREA,
+  DATATABLE,
+  POPULATION,
+} from "../../../../Utils/Constants/api_constants";
+import { useLocation } from "react-router-dom";
 const drawerWidth = 240;
 const Componentroutes = [
   {
     path: "/",
-    component: "Dashbaord",
+    component: "Dashboard",
   },
   {
-    path: "/DataTable",
+    path: DATATABLE,
     component: "DataTable",
   },
   {
-    path: "/Population",
+    path: POPULATION,
     component: "Population",
   },
   {
-    path: "/Area",
+    path: AREA,
     component: "Area",
   },
 ];
-export const StyledNavItem = styled((props) => (
-  <ListItemButton disableGutters {...props} />
-))(({ theme }) => ({
-  ...theme.typography.body2,
-  height: 48,
-  position: "relative",
-  textTransform: "capitalize",
-  color: theme.palette.text.secondary,
-  borderRadius: theme.shape.borderRadius,
-}));
-
-export const StyledNavItemIcon = styled(ListItemIcon)({
-  width: 22,
-  height: 22,
-  color: "inherit",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-});
-
 const LeftSideDrawer = () => {
+  const location = useLocation();
   return (
     <Drawer
       variant="permanent"
       sx={{
-        width: drawerWidth,
         flexShrink: 0,
         [`& .MuiDrawer-paper`]: {
           width: drawerWidth,
@@ -70,8 +60,17 @@ const LeftSideDrawer = () => {
           <List>
             {Componentroutes.map((output, index) => (
               <Link href={output.path} underline="none" key={index}>
-                <StyledNavItem>
-                  <StyledNavItemIcon
+                {/* <StyledNavItem> */}
+                <ListItemButton
+                  style={{
+                    height: 48,
+                    position: "relative",
+                    textTransform: "capitalize",
+                    backgroundColor:
+                      location.pathname === output.path ? "#dfdfdf" : "white",
+                  }}
+                >
+                  <ListItemIcon
                     sx={{
                       "&.active": {
                         color: "text.primary",
@@ -81,7 +80,7 @@ const LeftSideDrawer = () => {
                     }}
                   >
                     {output.component === "Dashboard" ? (
-                      <Dashboard />
+                      <DashboardCustomize />
                     ) : output.component === "DataTable" ? (
                       <TableRows />
                     ) : output.component === "Population" ? (
@@ -91,9 +90,17 @@ const LeftSideDrawer = () => {
                     ) : (
                       <Map />
                     )}
-                  </StyledNavItemIcon>
-                  <ListItemText disableTypography primary={output.component} />
-                </StyledNavItem>
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={output.component}
+                    style={{
+                      fontWeight: "700",
+                      fontFamily: "serif",
+                      color: "black",
+                    }}
+                  />
+                </ListItemButton>
+                {/* </StyledNavItem> */}
               </Link>
             ))}
           </List>

@@ -11,7 +11,6 @@ import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import CountrtiesDetails from "../Hooks/Context/Context";
 import Title from "../Common/Title/Title";
-import { COUNTRYDETAILS } from "../../../Utils/Constants/api_constants";
 
 const columns = [
   {
@@ -58,7 +57,7 @@ export default function DataTable() {
   };
 
   const SelectCOuntry = (value) => {
-    navigate(COUNTRYDETAILS);
+    navigate(`/CountryDetails/${value}`);
   };
 
   return (
@@ -74,7 +73,7 @@ export default function DataTable() {
                 style={{
                   minWidth: column.minWidth,
                   fontSize: "20px",
-                  background: "#48C9A7",
+                  background: "#dfdfdf",
                 }}
               >
                 {column.label}

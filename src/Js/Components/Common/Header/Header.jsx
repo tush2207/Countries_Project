@@ -52,11 +52,17 @@ export default function Header() {
           position="fixed"
           sx={{
             zIndex: (theme) => theme.zIndex.drawer + 1,
-            backgroundColor: "grey",
+            backgroundColor: "#dfdfdf",
           }}
         >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography variant="h4">Countries of the World</Typography>
+            <Typography
+              variant="h4"
+              color="black"
+              style={{ fontWeight: "700", fontFamily: "serif" }}
+            >
+              Countries of the World
+            </Typography>
             <Paper
               component="form"
               sx={{

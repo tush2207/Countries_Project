@@ -1,6 +1,6 @@
 import {
   AREA,
-  COUNTRYDETAILS,
+  COUNTRYDETAILSAPI,
   DATATABLE,
   POPULATION,
   SEARCHPAGE,
@@ -22,7 +22,7 @@ export const routes = [
     component: DataTable,
   },
   {
-    path: COUNTRYDETAILS,
+    path: COUNTRYDETAILSAPI,
     component: CountryDetails,
   },
   {

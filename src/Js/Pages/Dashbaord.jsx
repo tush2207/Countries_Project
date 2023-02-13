@@ -12,12 +12,8 @@ const Dashbaord = () => {
     (partialSum, a) => partialSum + a,
     0
   );
-
   const Area = data?.map((output) => output.area);
   const TotalArea = Area.reduce((partialSum, a) => partialSum + a, 0);
-
-  console.log("TOtalCounties", TotalCounties);
-
   return (
     <div>
       <Title Title={"Hi, Mx. X"} />

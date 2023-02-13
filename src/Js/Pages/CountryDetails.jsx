@@ -7,7 +7,17 @@ import {
 } from "../../Utils/Constants/api_constants";
 import baseApi from "../Services/baseApi";
 import Title from ".././Components/Common/Title/Title";
-import { KeyboardBackspaceSharp } from "@mui/icons-material";
+import {
+  KeyboardBackspaceSharp,
+  MapOutlined,
+  Place,
+} from "@mui/icons-material";
+import { styled } from "@mui/system";
+
+const StyledCards = styled(Card)(({ theme }) => ({
+  borderRadius: "10px",
+  border: "3px solid #dfdfdf",
+}));
 
 const CountryDetails = () => {
   const navigate = useNavigate();
@@ -22,10 +32,9 @@ const CountryDetails = () => {
       console.error(err.message);
     }
   };
-
   useEffect(() => {
     getContryData();
-  });
+  }, []);
   return (
     <Box mb={3}>
       <div
@@ -43,8 +52,8 @@ const CountryDetails = () => {
         </Typography>
       </div>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={4}>
-          <Typography variant="h4" sx={{ mb: 2 }}>
+        <Grid item xs={12} md={6} lg={5}>
+          <Typography variant="h4" sx={{ mb: 2, fontWeight: "700" }}>
             {CountyData?.name?.official}
           </Typography>
           <img
@@ -53,9 +62,9 @@ const CountryDetails = () => {
             style={{ width: "100%", height: "75%" }}
           />
         </Grid>
-        <Grid item xs={12} md={6} lg={5} ml={3}>
+        <Grid item xs={12} md={6} lg={6} ml={3}>
           <Title Title={"Name"} />
-          <Card variant="outlined">
+          <StyledCards style={{}}>
             <CardContent>
               <Typography variant="h6">
                 Official: {CountyData?.name?.common}
@@ -83,11 +92,11 @@ const CountryDetails = () => {
                 );
               })}
             </CardContent>
-          </Card>
+          </StyledCards>
         </Grid>
-        <Grid item xs={12} md={6} lg={5} mt={1}>
+        <Grid item xs={12} md={6} lg={5} mt={1} mr={3}>
           <Title Title={"Language"} />
-          <Card variant="outlined">
+          <StyledCards>
             <CardContent>
               {CountyData?.languages?.official ? (
                 <Typography variant="h6">
@@ -125,11 +134,12 @@ const CountryDetails = () => {
                 ""
               )}
             </CardContent>
-          </Card>
+          </StyledCards>
         </Grid>
-        <Grid item xs={12} md={6} lg={5} mt={1}>
+        <Grid item xs={12} md={6} lg={6} mt={1}>
           <Title Title={"Geography"} />
-          <Card variant="outlined">
+
+          <StyledCards>
             <CardContent>
               {CountyData?.region ? (
                 <Typography variant="h6">
@@ -165,22 +175,36 @@ const CountryDetails = () => {
               )}
               {CountyData?.latlng ? (
                 <Typography variant="h6">
-                  Lat/Lng : {CountyData?.latlng[0]} , {CountyData?.latlng[1]}
+                  Lat/Lng : {CountyData?.latlng[0]} ,{CountyData?.latlng[1]}
                 </Typography>
               ) : (
                 ""
               )}
-
               {CountyData?.borders ? (
                 <Typography variant="h6">
-                  Border : {CountyData?.borders[0]} , {CountyData?.borders[1]},
+                  Border : {CountyData?.borders[0]} , {CountyData?.borders[1]}
                   {CountyData?.borders[2]}
                 </Typography>
               ) : (
                 ""
               )}
+              <div style={{ display: "flex" }}>
+                <MapOutlined style={{ fontSize: "25px", marginRight: "5px" }} />
+                <a href={CountyData?.maps?.googleMaps} target="_blank" rel="noreferrer">
+                  {CountyData?.maps?.googleMaps}
+                </a>
+              </div>
+
+              <div style={{ display: "flex" }}>
+                <Place style={{ fontSize: "25px", marginRight: "5px" }} />
+                <Typography>
+                  <a href={CountyData?.maps?.openStreetMaps} target="_blank" rel="noreferrer">
+                    {CountyData?.maps?.openStreetMaps}
+                  </a>
+                </Typography>
+              </div>
             </CardContent>
-          </Card>
+          </StyledCards>
         </Grid>
       </Grid>
     </Box>

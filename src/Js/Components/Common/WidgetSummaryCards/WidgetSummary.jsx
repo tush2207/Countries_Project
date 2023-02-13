@@ -1,25 +1,12 @@
 import PropTypes from "prop-types";
-import { alpha, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { Card, Typography } from "@mui/material";
 import { CropSquare, Group, Public } from "@mui/icons-material";
 
-const StyledIcon = styled("div")(({ theme }) => ({
-  margin: "auto",
-  display: "flex",
-  borderRadius: "50%",
-  alignItems: "center",
-  width: theme.spacing(8),
-  height: theme.spacing(8),
-  justifyContent: "center",
-  marginBottom: theme.spacing(3),
-}));
-
 WidgetSummary.propTypes = {
   color: PropTypes.string,
-  icon: PropTypes.string,
   title: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
-  sx: PropTypes.object,
 };
 
 export default function WidgetSummary({ title, total, color = "primary" }) {
@@ -29,19 +16,13 @@ export default function WidgetSummary({ title, total, color = "primary" }) {
         py: 5,
         boxShadow: 0,
         textAlign: "center",
-        color: (theme) => theme.palette[color].darker,
-        bgcolor: (theme) => theme.palette[color].lighter,
         borderRadius: "10px",
+        border: "3px solid #dfdfdf",
       }}
     >
-      <StyledIcon
+      <div
         sx={{
-          color: (theme) => theme.palette[color].dark,
-          backgroundImage: (theme) =>
-            `linear-gradient(135deg, ${alpha(
-              theme.palette[color].dark,
-              0
-            )} 0%, ${alpha(theme.palette[color].dark, 0.5)} 100%)`,
+          color: "gray",
         }}
       >
         {title === "Countries" ? (
@@ -51,14 +32,17 @@ export default function WidgetSummary({ title, total, color = "primary" }) {
         ) : (
           <CropSquare style={{ fontSize: "40px" }} />
         )}
-      </StyledIcon>
+      </div>
 
       <Typography variant="h4">
         {total}
         {title === "Area" ? " km2" : ""}
       </Typography>
 
-      <Typography variant="h6" sx={{ opacity: 0.72 }}>
+      <Typography
+        variant="h6"
+        sx={{ opacity: 0.72, fontFamily: "serif", fontWeight: "500" }}
+      >
         {title}
       </Typography>
     </Card>
