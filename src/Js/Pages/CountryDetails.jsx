@@ -23,16 +23,38 @@ const CountryDetails = () => {
   const navigate = useNavigate();
   const { name } = useParams();
   const [CountyData, setCountyData] = useState();
+  const [CountyLanguage, setCountyLanguage] = useState();
+
   const getContryData = async () => {
     try {
       const response = await baseApi.get(SEARCHCOUNRTYAPI(name));
       let data = response?.data[0];
       setCountyData(data);
+      let Language = response?.data[0]?.languages;
+      let objKeys = Object.keys(Language);
+      objKeys.forEach((key) => {
+        let value = Language[key];
+        setCountyLanguage(value);
+      });
     } catch (err) {
       console.error(err.message);
     }
   };
+
+  console.log(CountyLanguage);
+
+  // const Language = () => {
+  //   const languages = CountyData?.languages;
+  //   let objKeys = Object.keys(CountyData?.languages);
+
+  //   objKeys.forEach((key) => {
+  //     let value = CountyData?.languages[key];
+
+  //   });
+  // };
+
   useEffect(() => {
+    // Language();
     getContryData();
   }, [name]);
   return (
@@ -100,41 +122,7 @@ const CountryDetails = () => {
           <Title Title={"Language"} />
           <StyledCards>
             <CardContent>
-              {CountyData?.languages?.official ? (
-                <Typography variant="h6">
-                  Native Language : {CountyData?.languages?.official}
-                </Typography>
-              ) : (
-                ""
-              )}
-              {CountyData?.languages?.eng ? (
-                <Typography variant="h6">
-                  eng: {CountyData?.languages?.eng}
-                </Typography>
-              ) : (
-                ""
-              )}
-              {CountyData?.languages?.hin ? (
-                <Typography variant="h6">
-                  hin: {CountyData?.languages?.hin}
-                </Typography>
-              ) : (
-                ""
-              )}
-              {CountyData?.languages?.tim ? (
-                <Typography variant="h6">
-                  tim: {CountyData?.languages?.tim}
-                </Typography>
-              ) : (
-                ""
-              )}
-              {CountyData?.languages?.ara ? (
-                <Typography variant="h6">
-                  ara: {CountyData?.languages?.ara}
-                </Typography>
-              ) : (
-                ""
-              )}
+              <Typography variant="h6">{CountyLanguage}</Typography>
             </CardContent>
           </StyledCards>
         </Grid>

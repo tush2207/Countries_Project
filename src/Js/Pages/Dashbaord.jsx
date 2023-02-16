@@ -12,38 +12,49 @@ import {
 const Dashbaord = () => {
   const data = useContext(CountrtiesDetails);
   const navigate = useNavigate();
+
   const TotalCounties = data?.length;
-  const Population = data?.map((output) => output.population);
-  const TotalPopulation = Population.reduce(
-    (partialSum, a) => partialSum + a,
-    0
-  );
-  const Area = data?.map((output) => output.area);
-  const TotalArea = Area.reduce((partialSum, a) => partialSum + a, 0);
+  const Population = data
+    ?.map((output) => output.population)
+    .reduce((partialSum, a) => partialSum + a, 0);
+  const Area = data
+    ?.map((output) => output.area)
+    .reduce((partialSum, a) => partialSum + a, 0);
+
+  const componentroutes = [
+    {
+      path: DATATABLE,
+      name: "Countries",
+      total: TotalCounties,
+    },
+    {
+      path: POPULATION,
+      name: "Population",
+      total: Population,
+    },
+    {
+      path: AREA,
+      name: "Area",
+      total: Area,
+    },
+  ];
+
   return (
     <div>
       <Title Title={"Hi, Mx. X"} />
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4}>
-          <WidgetSummary
-            title="Countries"
-            total={TotalCounties}
-            onClick={() => navigate(DATATABLE)}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <WidgetSummary
-            title="Population"
-            total={TotalPopulation}
-            onClick={() => navigate(POPULATION)}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <WidgetSummary
-            title="Area"
-            total={Math.floor(TotalArea)}
-            onClick={() => navigate(AREA)}
-          />
+      <Grid container={5}>
+        <Grid item md={12} display="flex">
+          {componentroutes.map((output) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} m={2}>
+                <WidgetSummary
+                  title={output.name}
+                  total={Math.floor(output.total)}
+                  onClick={() => navigate(output.path)}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
       </Grid>
     </div>
